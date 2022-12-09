@@ -176,7 +176,8 @@ function onlinepage_civicrm_alterTemplateFile($formName, $form, $context, &$tplN
     $domainID = CRM_Core_Config::domainID();
     $settings = Civi::settings($domainID);
     $onlinePageEventIds = $settings->get('onlinepage_event_id');
-    if (in_array($form->getVar('_eventId'), $onlinePageEventIds) && !CRM_Utils_System::isUserLoggedIn()) {
+    if (is_array($onlinePageEventIds) && in_array($form->getVar('_eventId'),
+        $onlinePageEventIds) && !CRM_Utils_System::isUserLoggedIn()) {
       $tplName = 'AccessError.tpl';
     }
   }
@@ -184,7 +185,9 @@ function onlinepage_civicrm_alterTemplateFile($formName, $form, $context, &$tplN
     $domainID = CRM_Core_Config::domainID();
     $settings = Civi::settings($domainID);
     $onlinePagecontributionIds = $settings->get('onlinepage_contribution_page_id');
-    if (in_array($form->getVar('_id'), $onlinePagecontributionIds) && !CRM_Utils_System::isUserLoggedIn()) {
+    if (is_array($onlinePagecontributionIds) && in_array($form->getVar('_id'),
+        $onlinePagecontributionIds) &&
+      !CRM_Utils_System::isUserLoggedIn()) {
       $tplName = 'AccessError.tpl';
     }
   }
