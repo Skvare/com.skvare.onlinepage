@@ -16,7 +16,7 @@ class CRM_Onlinepage_Utils {
     $events = [];
     $query = "SELECT id, title, start_date, end_date
       FROM civicrm_event
-      WHERE (is_template = 0 OR is_template IS NULL)";
+      WHERE (is_template = 0 OR is_template IS NULL) order by id desc";
     $eventsResult = CRM_Core_DAO::executeQuery($query);
     while ($eventsResult->fetch()) {
       $dates = $eventsResult->start_date ?? '';
@@ -38,6 +38,7 @@ class CRM_Onlinepage_Utils {
     foreach ($pages as $id => &$title) {
       $title = '#' . $id . ' - ' . $title;
     }
+    ksort($pages);
 
     return $pages;
   }
