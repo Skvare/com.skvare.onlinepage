@@ -19,13 +19,13 @@ class CRM_Onlinepage_Form_Settings extends CRM_Core_Form {
   public function buildQuickForm() {
     $this->add('select', 'onlinepage_event_id',
       ts('Event Page'),
-      CRM_Event_PseudoConstant::event(),
+      CRM_Onlinepage_Utils::getEvents(),
       FALSE, ['class' => 'crm-select2', 'multiple' => 'multiple', 'placeholder' => ts('- any -')]
     );
 
     $this->add('select', 'onlinepage_contribution_page_id',
       ts('Contribution Page'),
-      CRM_Contribute_PseudoConstant::contributionPage(),
+      CRM_Onlinepage_Utils::getContribtionPages(),
       FALSE, ['class' => 'crm-select2', 'multiple' => 'multiple', 'placeholder' => ts('- any -')]
     );
 

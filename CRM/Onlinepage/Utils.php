@@ -9,18 +9,36 @@ use CRM_Onlinepage_ExtensionUtil as E;
  */
 class CRM_Onlinepage_Utils {
 
-  static function getEvents() {
+  /**
+   * @return array
+   */
+  public static function getEvents() {
     $events = [];
-    $query = "SELECT id, title
+    $query = "SELECT id, title, start_date, end_date
       FROM civicrm_event
-      WHERE (is_template = 0 OR is_template IS NULL)
-      AND (start_date > NOW() OR end_date > NOW() OR end_date IS NULL)
-    ";
+      WHERE (is_template = 0 OR is_template IS NULL)";
     $eventsResult = CRM_Core_DAO::executeQuery($query);
     while ($eventsResult->fetch()) {
-      $events[$eventsResult->id] = $eventsResult->title;
+      $dates = $eventsResult->start_date ?? '';
+      if (!empty($dates) && !empty($eventsResult->end_date)) {
+        $dates .= ' - ';
+      }
+      $dates .= $eventsResult->end_date ?? '';
+      $events[$eventsResult->id] = ' #' . $eventsResult->id . ' - ' . $eventsResult->title . '  (' . $dates . ')';
     }
 
     return $events;
+  }
+
+  /**
+   * @return array|bool
+   */
+  public static function getContribtionPages() {
+    $pages = CRM_Contribute_BAO_Contribution::buildOptions('contribution_page_id', 'get', []);
+    foreach ($pages as $id => &$title) {
+      $title = '#' . $id . ' - ' . $title;
+    }
+
+    return $pages;
   }
 }
