@@ -8,19 +8,13 @@ The Online Page Access Control extension provides CiviCRM administrators with gr
 
 **Key Features:**
 - Control visibility of contribution pages for anonymous users
-- Restrict event registration pages to authenticated users only
-- Manage membership signup page access
-- Configure petition and survey page visibility
-- Bulk management of page access settings
-- Flexible permission-based controls
-- Integration with CiviCRM's existing permission system
+- Restrict event registration/donation/membership pages to authenticated users only
 
 ## Use Cases
 
 This extension is particularly valuable for:
 - **Member-Only Content:** Restricting donation forms or events to existing members
 - **Private Events:** Limiting event registration to invited participants only
-- **Secure Transactions:** Ensuring sensitive contribution pages require authentication
 - **Staged Launches:** Hiding pages during development or before public launch
 - **Premium Access:** Creating member-exclusive content and forms
 - **Data Security:** Protecting forms that collect sensitive information
